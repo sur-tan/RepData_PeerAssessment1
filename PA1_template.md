@@ -2,7 +2,7 @@
 
 ## Loading and preprocessing the data
 
-1. Load the required libraries
+* Load the required libraries
 
 ```r
     ## load libraries and suppress messages and warning messages
@@ -11,14 +11,14 @@
     suppressWarnings(suppressMessages(library(scales)))
 ```
 
-2. Load the data
+* Load the data
 
 ```r
     ## read the activity file, assuming activity file and this file are in the same folder
     data <- read.csv("activity.csv")
 ```
 
-3. Process/transform the data
+* Process/transform the data
 
 ```r
     ## convert date to date data type
@@ -28,7 +28,7 @@
 
 ## What is mean total number of steps taken per day?
 
-1. Calculate the total number of steps taken per day
+* Calculate the total number of steps taken per day
 
 ```r
     ## sum the number of steps, group the data by date
@@ -36,7 +36,7 @@
     data_summary_day <- summarize(groupby, total_steps=sum(steps))
 ```
 
-2. Make a histogram of the total number of steps taken each day
+* Make a histogram of the total number of steps taken each day
 
 ```r
     ggplot(data_summary_day, aes(x=date, y=total_steps)) + 
@@ -54,7 +54,7 @@
 
 ![](PA1_template_files/figure-html/unnamed-chunk-5-1.png) 
 
-3. Calculate and report the mean and median of the total number of steps taken per day
+* Calculate and report the mean and median of the total number of steps taken per day
 
 
 ```r
@@ -86,7 +86,7 @@ The median of the total number of steps taken per day is **10765**.
 
 ## What is the average daily activity pattern?
 
-1. Calculate the average number of steps taken for each interval, averaged across all days
+* Calculate the average number of steps taken for each interval, averaged across all days
 
 ```r
     ## average(mean) number of steps, group the data by interval
@@ -94,7 +94,7 @@ The median of the total number of steps taken per day is **10765**.
     data_summary_interval <- summarize(groupby, average_steps=mean(steps, na.rm=TRUE))
 ```
 
-2. Make a time series plot of the 5-minute interval (x-axis) and the average number of steps taken (y-axis)
+* Make a time series plot of the 5-minute interval (x-axis) and the average number of steps taken (y-axis)
 
 
 ```r
@@ -112,7 +112,7 @@ The median of the total number of steps taken per day is **10765**.
 
 ![](PA1_template_files/figure-html/unnamed-chunk-8-1.png) 
 
-3. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
+* Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
 ```r
     ## find the maximum average steps
@@ -132,7 +132,7 @@ The 5-minute interval that contains the maximum number of steps is **835**.
 
 ## Imputing missing values
 
-1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
+* Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
 
 
 ```r
@@ -147,7 +147,7 @@ The 5-minute interval that contains the maximum number of steps is **835**.
 The total number of missing values is **2304**.
 
 
-2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
+* Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
 
 **The mean of the steps taken for each the 5-minute interval** is used as a strategy for filling the NA values. First, create a dataset to calculate the mean of the steps taken for each 5-minute interval. Replace the steps with the NA values in the original data with the calculated mean for the same interval to create a new dataset.   
 
@@ -166,7 +166,7 @@ The total number of missing values is **2304**.
 ## [1] 0
 ```
 
-3. Create a new dataset that is equal to the original dataset but with the missing data filled in.
+* Create a new dataset that is equal to the original dataset but with the missing data filled in.
 
 ```r
     ## merge the original data with the strategy dataset derived above
@@ -182,7 +182,7 @@ The total number of missing values is **2304**.
     data_new <- select(temp, steps, date, interval)
 ```
 
-4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
+* Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
 
 ```r
@@ -237,7 +237,7 @@ The values differ from the estimates from the first part of the assignment. The 
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
-1.Create a new factor variable in the dataset with two levels - "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
+* Create a new factor variable in the dataset with two levels - "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
 
 
 ```r
@@ -248,7 +248,7 @@ The values differ from the estimates from the first part of the assignment. The 
     data_new[weekdays(data_new$date)=="Saturday" | weekdays(data_new$date)== "Sunday", ]$day_type <- "weekend"
 ```
 
-2.Make a panel plot containing a time series plot of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
+* Make a panel plot containing a time series plot of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
 
 
 ```r
