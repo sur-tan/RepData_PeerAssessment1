@@ -2,7 +2,7 @@
 
 ## Loading and preprocessing the data
 
-1. Loading the required libraries
+1. Load the required libraries
 
 ```r
     ## load libraries and suppress messages and warning messages

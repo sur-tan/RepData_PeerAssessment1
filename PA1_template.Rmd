@@ -7,7 +7,7 @@ output:
 
 ## Loading and preprocessing the data
 
-1. Loading the required libraries
+1. Load the required libraries
 ```{r, echo="TRUE"}
     ## load libraries and suppress messages and warning messages
     suppressWarnings(suppressMessages(library(dplyr)))
